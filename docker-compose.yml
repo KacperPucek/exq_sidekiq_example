@@ -11,6 +11,7 @@ services:
     command: bundle exec sidekiq
     environment:
       REDIS_URL: redis://redis:6379/0
+      RAILS_ENV: production
 
   rails_app:
     build: ./rails_app
@@ -20,6 +21,7 @@ services:
       - redis
     environment:
       REDIS_URL: redis://redis:6379/0
+      RAILS_ENV: production
 
   phoenix_app:
     build: ./phoenix_app
