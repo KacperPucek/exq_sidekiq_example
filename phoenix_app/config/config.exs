@@ -30,8 +30,7 @@ end
 
 config :exq,
   name: Exq,
-  host: "127.0.0.1",
-  port: 6379,
+  url: System.get_env("REDIS_URL") || "redis://127.0.0.1:6379",
   namespace: "rms-#{Rails.Helpers.stage(Mix.env)}",
   concurrency: :infinite,
   queues: ["default"],
