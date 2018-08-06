@@ -14,13 +14,8 @@ defmodule PhoenixAppWeb.Router do
   end
 
   scope "/", PhoenixAppWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :api
 
-    get "/", PageController, :index
+    post "/greet", GreeterController, :create
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", PhoenixAppWeb do
-  #   pipe_through :api
-  # end
 end

@@ -22,6 +22,25 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+defmodule Rails.Helpers do
+  def stage(:dev),  do: "development"
+  def stage(:prod), do: "production"
+  def stage(other), do: other
+end
+
+config :exq,
+  name: Exq,
+  host: "127.0.0.1",
+  port: 6379,
+  namespace: "rms-#{Rails.Helpers.stage(Mix.env)}",
+  concurrency: :infinite,
+  queues: ["default"],
+  poll_timeout: 50,
+  scheduler_poll_timeout: 200,
+  scheduler_enable: true,
+  max_retries: 25,
+  shutdown_timeout: 5000
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

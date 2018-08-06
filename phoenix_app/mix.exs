@@ -20,7 +20,7 @@ defmodule PhoenixApp.Mixfile do
   def application do
     [
       mod: {PhoenixApp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :exq]
     ]
   end
 
@@ -40,7 +40,8 @@ defmodule PhoenixApp.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:exq, "~> 0.12.1"}
     ]
   end
 
