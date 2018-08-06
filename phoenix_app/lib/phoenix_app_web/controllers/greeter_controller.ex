@@ -3,9 +3,9 @@ defmodule PhoenixAppWeb.GreeterController do
 
   alias Exq.Enqueuer
 
-  def create(conn, %{name: name}) do
+  def create(conn, %{"name" => name}) do
     {:ok, _ack} = Enqueuer.enqueue(Enqueuer, "default", "GreeterJob", [name])
 
-    render conn, :ok
+    send_resp(conn, 201, "")
   end
 end
